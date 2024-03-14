@@ -66,3 +66,18 @@ function executeWork(employee: Director | Teacher): string {
 		return employee.workTeacherTasks();
 	}
 }
+
+/** Task 7. String literal types*/
+// String literal type Subjects
+type Subjects = 'Math' | 'History';
+
+// function teachClass
+function teachClass(todayClass: Subjects): string {
+	if (todayClass === 'Math') {
+		return `Teaching Math`;
+	} else if (todayClass === 'History') {
+		return `Teaching History`;
+	} else {
+		return `Invalid Subject`;
+	}
+}
