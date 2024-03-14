@@ -1,4 +1,4 @@
-// Teacher Interface
+// Task 1: Teacher Interface
 interface Teacher {
 	readonly firstName: string;
 	readonly lastName: string;
@@ -9,7 +9,17 @@ interface Teacher {
 	[key: string]: any;
 }
 
-// Interface Directors extends Teacher
+// Task 2: Interface Directors extends Teacher
 interface Directors extends Teacher {
 	numberOfReports: number;
+}
+
+// Task 3: Interface printTeacherFunction
+interface printTeacherFunction {
+	(firstName: string, lastName: string): string;
+}
+
+// Task 3: Printing teachers function
+const printTeacher: printTeacherFunction = (firstName: string, lastName: string): string => {
+	return `${firstName[0]}. ${lastName}`;
 }
