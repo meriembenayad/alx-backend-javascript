@@ -23,14 +23,12 @@ async function countStudents(path) {
     fields[field].push(firstName);
   }
 
-  let output = `Number of students: ${students.length - 1}\n`;
+  console.log(`Number of students: ${students.length - 1}\n`);
   for (const field in fields) {
     if (Object.prototype.hasOwnProperty.call(fields, field)) {
-      output += `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`;
+      console.log(`Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`);
     }
   }
-
-  console.log(output);
 }
 
 module.exports = countStudents;
