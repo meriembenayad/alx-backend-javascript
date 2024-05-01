@@ -23,7 +23,7 @@ async function countStudents(path) {
     fields[field].push(firstName);
   }
 
-  console.log(`Number of students: ${students.length - 1}\n`);
+  console.log(`Number of students: ${students.length - 1}`);
   for (const field in fields) {
     if (Object.prototype.hasOwnProperty.call(fields, field)) {
       console.log(`Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`);
