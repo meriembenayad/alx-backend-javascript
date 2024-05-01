@@ -8,10 +8,14 @@ const app = http.createServer(async (req, res) => {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     try {
-      const students = await countStudents(process.argv[2]);
+      let students = '';
+      const consoleLog = console.log;
+      console.log = (msg) => { students += '\n' + msg};
+      await countStudents(process.argv[2]);
+      console.log = consoleLog;
       res.statusCode = 200;
       res.setHeader('Content-Type', 'text/plain');
-      res.end(`This is the list of our students\n${students}`);
+      res.end(`This is the list of our students${students}`);
     } catch (error) {
       res.statusCode = 500;
       res.end(error.message);
