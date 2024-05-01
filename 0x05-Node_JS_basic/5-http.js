@@ -10,7 +10,7 @@ const app = http.createServer(async (req, res) => {
     try {
       let students = '';
       const consoleLog = console.log;
-      console.log = (msg) => { students += '\n' + msg};
+      console.log = (msg) => { students += `\n${msg}`; };
       await countStudents(process.argv[2]);
       console.log = consoleLog;
       res.statusCode = 200;
