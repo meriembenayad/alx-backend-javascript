@@ -7,18 +7,24 @@ const app = http.createServer(async (req, res) => {
     res.setHeader('Content-type', 'text/plain');
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    try {
-      let students = '';
-      const consoleLog = console.log;
-      console.log = (msg) => { students += `\n${msg}`; };
-      await countStudents(process.argv[2]);
-      console.log = consoleLog;
+    if (!process.argv[2]) {
       res.statusCode = 200;
-      res.setHeader('Content-Type', 'text/plain');
-      res.end(`This is the list of our students${students}`);
-    } catch (error) {
-      res.statusCode = 500;
-      res.end(error.message);
+      res.setHeader('Content-type', 'text/plain');
+      res.end('This list of our students\nDatabase not available');
+    } else {
+      try {
+        let students = '';
+        const consoleLog = console.log;
+        console.log = (msg) => { students += `\n${msg}`; };
+        await countStudents(process.argv[2]);
+        console.log = consoleLog;
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end(`This is the list of our students${students}`);
+      } catch (error) {
+        res.statusCode = 500;
+        res.end(error.message);
+      }
     }
   } else {
     res.statusCode = 404;
