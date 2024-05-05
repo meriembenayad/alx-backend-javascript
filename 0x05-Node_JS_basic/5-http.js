@@ -11,11 +11,12 @@ const app = http.createServer(async (req, res) => {
     try {
       let students = '';
       const consoleLog = console.log;
-      console.log = (msg) => { students += `\n${msg}`; };
+      console.log = (msg) => { students += students.length > 0 ? `\n${msg}` : `${msg}`; };
       await countStudents(process.argv[2]);
       console.log = consoleLog;
+      students = students.trim();
       res.statusCode = 200;
-      res.end(`This is the list of our students${students}`);
+      res.end(`This is the list of our students\n${students}`);
     } catch (error) {
       if (error.message === 'Cannot load the database') {
         res.statusCode = 200;
